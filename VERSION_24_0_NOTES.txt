@@ -1,0 +1,32 @@
+ASTROVAEL 24.0 - FIXED WORLD-SPACE PLANET ARRIVAL
+
+Based on the Version 23.0 project.
+
+MAIN FIX
+- Venus is now created at one fixed world-space coordinate derived from the route length.
+- The planet is no longer repositioned relative to the player's ship every frame.
+- The ship moves toward the fixed planet, so perspective makes Venus naturally grow in view.
+- The planet uses a larger, consistent physical radius with higher sphere mesh resolution.
+- Camera far clipping distance is extended so the destination can be rendered from much farther away.
+- Space fog density is reduced so the distant planet is not hidden by fog.
+
+ARRIVAL BEHAVIOUR
+- The route distance-to-world-distance conversion uses one shared constant.
+- The destination surface clearance is calculated so the ship reaches a near-orbit position at the end of the route.
+- When the route reaches 100%, forward movement and new hazard spawning stop; the ship holds near Venus instead of flying through it.
+- The planet's atmosphere and environment tint transition during the final part of the approach.
+
+PRESERVED SYSTEMS
+- Steering, boost, fire, alien encounters, hazards, energy pickups, navigation map, HUD, save data and existing sectors remain in the project.
+
+CONTROLS
+- A / Left Arrow: steer left
+- D / Right Arrow: steer right
+- Space: boost
+- F: fire while held
+- Escape: pause / resume
+- R: restart after a run ends
+
+TESTING NOTE
+- Package integrity and source-level checks were performed.
+- Godot 4.7 was not available in the build environment, so this project has NOT been compiled or runtime-tested in the Godot editor. Please keep Version 23.0 as a backup and test this update before replacing it.

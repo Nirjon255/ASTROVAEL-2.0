@@ -1,0 +1,29 @@
+ASTROVAEL 23.0 - PLANET ARRIVAL & VISUAL UPGRADE
+
+Based on Version 22.0. Existing combat, steering, boost, route HUD, save data,
+obstacles, pickups, and navigation map are retained.
+
+NEW IN 23.0
+- Added a dedicated Venus destination planet with a 2048x1024 surface texture,
+  a separate rotating cloud layer, atmospheric limb glow, and orbital accent ring.
+- Venus now appears on the horizon as the Earth-to-Venus route begins, gradually
+  grows larger, and moves closer as the journey progresses.
+- The space lighting and fog gradually warm as the ship approaches Venus.
+- The five visual sectors now span the full Earth-to-Venus route rather than
+  extending beyond the destination.
+- Reduced the velocity instrument from 178x91 to 154x76 and tightened its
+  typography and speed bar to free up HUD space.
+- Preserved the existing mobile and keyboard controls and Version 22 combat.
+
+CONTROLS
+- A / Left Arrow: steer left
+- D / Right Arrow: steer right
+- Space: boost
+- F: fire
+- Escape: pause / restart after game over
+- Mobile: on-screen steering, FIRE, and BOOST controls
+
+IMPORTANT TESTING NOTE
+This package was structurally checked and its ZIP archive integrity verified.
+It was not compiled or run in the Godot editor in this environment. Please keep
+Version 22.0 as a backup and report the first Godot error if one appears.

@@ -1,0 +1,512 @@
+ASTROVAEL 30.0 - BIG UPDATE: LANDINGS, STATION, RAIDERS, TRAFFIC
+
+LANDING ON EACH PLANET (30.0)
+- The landing is now a long sequence, about 24 seconds, instead of a quick lowering:
+  - An approach from high above, the ship slowing from 16 units to 6.
+  - The ship passes through two cloud layers (unshaded planes with the planet's cloud texture, turning slowly).
+  - A hover, from 6 units down to 1.5, then the final approach over the pad, to -2.5.
+  - The touchdown, settling onto the pad, with dust rising from the pad once the ship is low.
+- The landing gear extends on the final approach: four struts with feet, folded under the hull at first.
+- The take-off reverses this, about 26 seconds: the ship spools up on the pad, lifts off in dust, climbs through the
+  cloud layers, and rises out of the air. The ship then descends back to flight height over the pass-by phase.
+- The surface has scenery from its world: forests of trees on Verdantis, mesas on the desert worlds, ice pillars,
+  crystals, lava seams and the ocean foam (the last four were already in earlier versions).
+
+ALIEN RAIDERS (30.0)
+- Rebuilt as a more detailed hostile craft: a long armoured fuselage in three sections, a dorsal ridge with ribs,
+  a canopy with a sensor bulge, swept wings with weapon pods and a light along each leading edge, three engines
+  with glowing cores and exhaust plumes, a sensor spike, and warning strips along the flanks. The armour uses the
+  generated metal textures, and the armour and warning lights take each planet's colours.
+- Every raider in the game uses this model: the flight, the aerial combat and the planetary battle.
+
+SPACE STATION (30.0)
+- A larger landing area: a deck 124 by 42 units, with six landing pads marked with corner lights and a centre square.
+- Three hangar bays on the near edge, lit from within, and two gantries across the deck with supports.
+- Twenty-four cargo containers in orange, blue, grey and white, spread across the deck.
+- The command tower, the glass dome, the outer ring, the docking spires and the solar arrays are kept, and the station
+  uses the generated metal textures.
+
+FLYING TRAFFIC AROUND THE STATION (30.0)
+- Eight craft fly lanes around the station at different heights and speeds: patrol craft and freighters.
+  Freighters have cargo containers and two engine pods.
+- Shuttles come in on approach paths from high above, land on the six pads, wait, take off and climb out of sight,
+  then rest before the next cycle. Traffic is shown in the station's opening scene.
+
+KEPT FROM EARLIER VERSIONS
+- Flight, navigation, combat, the aerial fight, the hull and the crash menu, the save slots, the campaign, the rewards,
+  the sound system, the map, the pilot camera and the altitude keys (W and S).
+
+NOT IN THIS VERSION
+- Not run in Godot. Checked for syntax and missing references only. The landings, the cloud layers, the gear, the
+  traffic and the new raiders have not been seen on screen. Expect to tune the heights, the timings and the sizes.
+- The graphics are procedural: built from primitives and generated textures. This is a clear step up from the
+  earlier primitives, but it is not the photo-realistic quality of the reference images, and it is not a studio-made
+  asset set. The Compatibility renderer also limits reflections and global lighting.
+- Civilian characters, ship upgrades and the hangar, shields, and a full-screen map mode are still open (see the
+  audit in the 28.12 notes).
+- Shadows and ambient occlusion (28.13) have not been checked for performance.
+- The reference images were not reproduced exactly. The station and the ship follow their layouts, from primitives.
+- Still no sound files; the sound is generated in code (28.12).
+
+ASTROVAEL 28.13 - GRAPHICS UPGRADE, FIRST PASS
+
+WHAT CHANGED
+- Procedural metal panel textures for the ships and the station (tools/gen_metal_textures_v28_13.py).
+  Each material has an albedo map (base colour, seams, rivets, scratches), a normal map (sunk seams, raised rivets,
+  fine grain) and a roughness map (smooth panels, rougher seams and wear). The texture is tinted by each part's colour.
+- Directional shadows are on for the flight sun (SHADOWS_ENABLED in main.gd) and for the station's sun.
+  Shadow distance: 220 units in the flight, 320 at the station.
+- Ambient occlusion is requested in the flight environment (env.ssao_enabled). Whether it appears depends on the renderer.
+
+WHAT WAS NOT DONE (FROM THE PROMPT)
+- The prompt was cut off in the station section ("Spacecraft hang..."). The rest of the station requirements are not implemented yet.
+  Send the rest and I'll continue.
+- Volumetric clouds and nebulae, screen-space and planar reflections, and global illumination: not available in the
+  Compatibility renderer used by this project. Changing renderer would be a separate decision, with its own tradeoffs.
+- Realistic engine flames, detailed particle systems and cinematic camera moves: not yet reworked in this pass.
+- Hangar and ship purchasing (from earlier milestones): still open.
+
+WARNING
+- Not run in Godot. Checked for syntax and missing references only. The textures and shadows are untested on screen.
+  Shadows and ambient occlusion may cost frame rate on lower-end computers; the constants can be switched off.
+
+MILESTONE 1 AUDIT (28.12)
+Checked against the master prompt, section by section. Status: DONE, PARTIAL, MISSING.
+
+2 Opening station cinematic ......... DONE. Glide through the station, then launch with engine ignition.
+3 Main spaceship .................... PARTIAL. Detailed AST-77 layout from primitives. Not a sculpted model.
+     Chase camera, cockpit camera (key 2), boost, hull, weapons: DONE. Upgrades: MISSING (see below).
+4 Planets and universes ............. PARTIAL. Nine named worlds with their own colours, fog, atmosphere and
+     survivors. Forest (Verdantis) has no scenery yet. Weather is dust, storms and fog, not a full weather system.
+     The approach transition from space to planet: DONE.
+5 Story and rescue missions ......... DONE. Transmission, brief, countdown, marker on the 3D map, flight, aerial
+     combat, landing, battle, rescue, reward, next signal.
+6 Enemies and combat ................ PARTIAL. Raiders pursue, fire red lasers and explode. Shields: MISSING.
+     Difficulty grows with the mission number.
+7 Rescue and landing ................ DONE. Survivors are military, in planet colours. Civilians: MISSING.
+8 Mission failure ................... DONE. Restarts the mission from its briefing, no reward on failure.
+     Reward is paid once per mission.
+9 HUD ............................... PARTIAL. Speed, travelled distance, cash, diamonds, personal best, hull,
+     destination, countdown, rescue status are shown. Engine condition: MISSING. Map-only mode: PARTIAL (map
+     is in the left panel; no separate full-screen map mode yet).
+10 Graphics ......................... PARTIAL. Procedural materials, glow, fog, particles, nav lights, engine glow,
+     planet clouds and atmospheres. Dynamic shadows, reflections and volumetric lighting: MISSING (the
+     Compatibility renderer does not give them in this project).
+11 Sound and music .................. PARTIAL (this milestone). Engine hum and boost, lasers, enemy lasers,
+     explosions, hits, alarm, radio tone, mission chime and an ambient drone are generated in code.
+     Station ambience and cinematic music: MISSING.
+12 Technical ........................ PARTIAL. Compatibility renderer, separated systems. Save compatibility kept
+     (new save keys default safely). Ship purchasing and the hangar: MISSING.
+13 Development rules ................ Existing features kept. Not run in Godot: see the warning below.
+14 Final objective .................. In progress.
+
+NEW IN THIS MILESTONE (28.12)
+- scripts/sound_mixer.gd: a procedural sound system. No audio files are used.
+- Five more named worlds, which are campaign missions: FROSTHAVEN (ice, boreal drift), VERDANTIS (forest, emerald
+  reach), INFERNUS (lava, cinder belt), ZEPHYRA (ringed sky world, zephyr shoal) and SHADOWMERE (dark storm,
+  shadow deep). The mission order is now: AQUARIS, PYRAX, NYXARA, SATURN, FROSTHAVEN, VERDANTIS, ILON-008,
+  INFERNUS, ZEPHYRA, SHADOWMERE, then generated worlds.
+- Sound is played on: the laser, enemy lasers, explosions, the ship being hit, mission complete, the mission
+  brief's radio tone, and game over. The engine follows the ship's speed, and the alarm sounds in the alarm phase.
+
+KNOWN GAPS, FOR THE NEXT MILESTONES
+- Ship upgrades, the hangar and ship purchasing (only the listing exists).
+- Shields, engine condition, civilians, a separate map-only mode.
+- Forest scenery for Verdantis.
+- Sound during the battle on the planet surface (surface explosions and the rescue laser).
+- Dynamic shadows, reflections and volumetric lighting.
+
+WARNING
+- The project has NOT been run in Godot. It is checked for syntax and missing references only.
+- The sound is generated at run time. Its loudness and quality have not been heard or measured.
+STATION (28.11)
+- Rebuilt after the first reference: a central tower of stacked decks with a blue light spine and antenna spires,
+  a glass observation dome, a long landing deck with yellow markings and helipad circles, a hangar mouth, an outer
+  ring of lit modules in two levels, docking spires hanging underneath, and solar arrays on booms.
+
+SHIP (28.11)
+- Rebuilt after the AST-77 reference: a long dark hull with a sharp nose, swept wings with wing-tip fins, canted dorsal
+  fins, twin plasma engines with long blue plumes, underwing cannons, a dark canopy, nav lights, and the AST-77 name
+  on the side. It flies level, with gentle banking.
+
+LONGER MISSIONS (28.11)
+- Mission flights are slower and steadier (60% of the free-flight speed), so each trip takes longer.
+- The rescue window is now twice the trip time, plus 90 seconds, so there is time for the battle.
+  At Slow, the trip to Saturn is now about 35 minutes; at Fast, about 12.
+
+LANDING AND TAKE-OFF ON THE PLANET (28.11)
+- The landing site is a real surface: a textured terrain of rolling ground and rocky outcrops built from noise,
+  flat around the landing pad, with a horizon of mountains and the planet overhead. Each planet has its own colours.
+- The ship lands on the pad with dust and retro thrust, and takes off from it with a dust cloud, a nose lift and the
+  flames growing.
+
+THE SURVIVOR AND THE SIGNAL (28.11)
+- The survivor is a military member: camouflage fatigues, a plate vest with pouches, a helmet with a glowing visor
+  in the planet's colour, a backpack, and a rifle across the chest. The survivor breathes, and is seen with a flare.
+- After landing, the survivor raises a signal flare. The flare lights the area and the battle begins.
+
+THE BATTLE (28.11)
+- The ship flies over the landing site: steer with A and D, change height with W and S, and fire with F.
+- Rift Raiders come in waves, in the planet's colours. They fire red lasers at the survivor.
+- An alien villain walks toward the survivor: a large armoured biped with three glowing eyes, cannon arms and spikes.
+  It stomps (the camera shakes, and the survivor is hurt if close), and it fires plasma at the ship. Plasma hits only
+  if the ship is still in its path, so you can dodge it.
+- The mission line shows the villain's health. When the villain falls and the raiders are cleared, the survivor boards
+  the ship, and the ship takes off.
+- The hull (in the flight system panel) takes damage from the plasma and the raiders. If it reaches zero, the crash menu
+  opens and the repair continues the battle.
+
+ANIMATION (28.11)
+- Nav lights blink, engines flicker, the survivor breathes and waves, the villain walks, swings its arms and its eyes pulse,
+  and the signal flare flickers.
+
+NOT IN THIS VERSION
+- Photo-realism: the reference images are photo-realistic concept art. This project uses Godot's Compatibility renderer,
+  so the look follows their design, not their rendering.
+- No sound: the project has no audio files.
+- The survivor's animations are procedural (limbs swing and the arm waves). Full motion capture is not possible here.
+- The bug list: I still don't have a list of the bugs you saw. Send me what happened and when, and I'll fix them.
+UPGRADED STATION (28.10)
+- Three rings: the outer ring of habitat and cargo modules, plus an upper and a lower ring around an open core.
+  The rings are joined by struts, and spokes run from the spine to the outer ring.
+- A central spine with a glass dome and a lit observation band, three masts with beacons, four docking bays
+  with lit doorways and docking pods, four solar arrays on pivots, and six thruster bays under the outer ring.
+- The modules alternate in colour, and each has a band of lit windows.
+
+ADVANCED SHIP (28.10)
+- A tapered nose, a canopy, a two-tone hull (light upper plate, dark belly), side intakes with light inside,
+  swept wings with glowing leading edges, wing-tip fins, twin nacelles with nozzles and glowing cores, and a dorsal antenna.
+- Red and green wing-tip nav lights and a white strobe blink out of step with each other.
+- The ship flies level. The banking is gentle, so the ship no longer tilts sharply in turns.
+
+AERIAL COMBAT OVER THE PLANET (28.10)
+- Arriving over the target no longer starts the landing at once. The ship flies in the planet's airspace, and the
+  Rift Raiders attack in waves, in that planet's colours. Shoot them down with F.
+- Raiders fire red lasers. A shot that catches the ship (when it is still in the raider's line) costs hull.
+- The HULL bar is in the FLIGHT SYSTEM panel. If the hull reaches zero, the ship is destroyed, and the crash menu
+  opens. Repairing the ship restores the hull to 60%. A new mission starts with a full hull.
+- Altitude: W climbs and S descends, in the flight and in the airspace fight. Altitude settles back at rest.
+  No key labels are written on screen, as you asked.
+- The landing starts only after the last raider is destroyed.
+
+FIXES (28.10)
+- The mission restart resets the hull and the altitude.
+- The repair restores the hull.
+- Quick arrival (N) during a mission now starts the aerial fight, not a landing that skips it.
+- The station model's docking-pod orientation is set directly (it had a leftover conditional).
+
+NOT IN THIS VERSION
+- The bug list: I don't have a list of the bugs you saw. Send me what you saw (what happened, when) and I'll fix them.
+- The reference images are photo-realistic concept art. This project uses Godot's Compatibility renderer, so the look
+  follows the descriptions in the design and the references, not their rendering.
+- No sound. The project has no audio files.
+MISSION LOOP (28.9)
+Every mission now follows this loop:
+  1. BRIEF at the station: the signal card shows the planet, the universe, the distance, the travel time at your
+     speed, the survivor, the threat, and the rescue window. A 3-2-1 countdown follows.
+  2. DEPART: the ship leaves the station; the camera follows the station as it shrinks behind.
+  3. FLIGHT: a long trip to the planet. The route is not straight: the autopilot swings the ship left or right
+     of the line and brings it back to the lane at the planet. (Mission 1 swings right; mission 2 swings left, and so on.)
+  4. LANDING: the camera moves to a side view as the ship lands. The planet hangs in the sky.
+  5. RESCUE: hostile craft in that planet's colours attack the survivor. Fire with F.
+  6. BOARDING and TAKE OFF: the survivor walks to the ship with a real walking cycle. On take-off the camera
+     drops low, the nose lifts, and the flames grow.
+  7. PASSED: $10,000 is added and saved.
+  8. RETURN: a fast warp back to the station, with the stars streaming past.
+  9. DOCK: the station ahead grows as the ship approaches its docking arm.
+ 10. ALARM, then the next signal. The next mission starts from the station.
+
+CAMPAIGN ORDER (28.9)
+- Mission 1: AQUARIS (ANDROMEDA REACH). Mission 2: PYRAX (ORION FRONTIER). Mission 3: NYXARA (VEIL NEBULA).
+- Mission 4: SATURN (the ringed gas giant). Mission 5: ILON-008 (PERSEUS VOID, a volcanic basalt world).
+- Later missions go further out, to generated worlds.
+
+ENEMIES AND SURVIVORS PER PLANET (28.9)
+- The Rift Raiders are painted for each planet: teal on Aquaris, sand brown with orange lights on Pyrax,
+  indigo with violet lights on Nyxara, icy white on Saturn, and dark basalt with orange lights on ILON-008.
+  The raiders in flight take the colours of the planet ahead.
+- Survivors have a fuller body: a torso and hips, a head with hair, arms and hands on shoulder joints, and legs
+  and boots on hip joints. They walk when boarding and wave while waiting. Gear matches the planet: goggles
+  (Pyrax), a teal band (Aquaris), a glowing pack (Nyxara), a visor (Saturn), and a heat visor (ILON-008).
+- The surfaces have their own scenery: an ocean settlement with foam, a dust storm, violet crystal fields,
+  ice pillars, and lava seams with rising smoke.
+
+TIME LIMITS (28.9)
+- The rescue window is set from the trip: about 1.35 times the trip time at your chosen speed, plus 40 seconds.
+  The trip to Saturn is long: about twenty minutes at the Slow setting, and about seven at Fast. A black hole,
+  when it opens during a mission, carries the ship to the target in one minute, as before.
+
+CAMERA (28.9)
+- A cinematic camera for the departure, the landing and the take-off, which blends in and out of the chase camera.
+- The camera shakes when the survivor is hit.
+
+NOTES
+- The departure, return and dock take place out in space, so they do not show the planets in the background.
+- Missions past the campaign use generated worlds, which have generic briefings.
+- Still no sound: the project has no audio files.
+- The look is the Compatibility renderer's: no soft shadows, limited reflections.
+
+DESIGN DOCUMENT (28.8)
+Built from ASTROVAEL_Galactic_Rescue_Campaign.pdf:
+
+- OPENING CINEMATIC: a ring-shaped orbital station with spires, docking arms, cargo shuttles, service drones and
+  blinking lights above a blue planet. The camera glides through the station on a smooth loop. START MISSION boards
+  the ship: the engines ignite, the camera follows the ship out past the docking arm, and the station shrinks behind
+  as the flight begins.
+- THE FIRST THREE MISSIONS use the document's planets, universes, survivors and threats:
+  - AQUARIS, in ANDROMEDA REACH: blue ocean world, storm bands and floating settlements. The survivor is a settlement
+    engineer keeping the last emergency beacon alive. Raider fighters circle the settlement.
+  - PYRAX, in ORION FRONTIER: red desert frontier with a dust storm and a research outpost. The survivor is a
+    field medic sheltering injured colonists. Raider gunships and defence batteries.
+  - NYXARA, in VEIL NEBULA: violet crystal world. The survivor is a scientist. Faster interceptors arrive in waves.
+- The survivors' gear matches the planets: teal chest band on Aquaris, goggles on Pyrax, glowing pack on Nyxara.
+- RIFT RAIDERS: angular dark fighters with red warning lights. On the rescue surface they fire red beams at the
+  survivor. Each beam hits and shakes the camera.
+- CAMERA SHAKE on impacts: raider beams, hostile craft destroyed in flight.
+- The briefing card now shows PLANET, UNIVERSE, RESCUE target, the briefing text, the THREAT, and the RESCUE WINDOW.
+- The cover tagline is now the document's: THE GALACTIC RESCUE CAMPAIGN, and ANSWER THE SIGNAL · CROSS THE STARS ·
+  BRING THEM HOME.
+
+SWITCH (28.8)
+- scripts/campaign.gd: USE_CAMPAIGN_NAMES. True (default) gives the first three route stops the document's names:
+  Aquaris replaces Venus, Pyrax replaces Mars and Nyxara replaces Jupiter. Set it to false to keep the real planet
+  names. The change applies to the whole game.
+
+WHAT MATCHES THE DOCUMENT, AND WHAT DOES NOT
+- Matches: the station's structure and lighting, the glide and launch, the planet colours, the planet-specific
+  scenery and gear, the enemy design, the mission names, the rescue, reward and restart rules.
+- Not matched: the document's concept art is photo-realistic. This project uses Godot's Compatibility renderer, which
+  limits realism (no soft shadows, limited reflections). The look follows the document's description, not its
+  rendering.
+- No sound. The document's audio (station ambience, alarm, rescue acknowledgements) is not in the game, because the
+  project has no audio files.
+- The station's ring is built from structural segments, not the glowing rings removed in 28.6. The document shows a
+  ring-shaped station, so the ring is kept as solid structure.
+- Enemies in flight are the Rift Raider design now. They do not fire at the ship yet; they fire on the rescue surface.
+
+STORY: THE RESCUE MISSIONS (28.7)
+- The game opens at the ORBITAL STATION: an animated station with rotating solar arrays, blinking beacons,
+  ships flying around it and the planet turning behind it. START MISSION begins the flight.
+- A mission is a distress signal from a survivor on a planet ahead on the route.
+- INCOMING SIGNAL card: the planet name and the universe (galaxy) name, the rescue window, then a 3-2-1 countdown.
+- Flight: the mission line at the top shows the planet and the time left in the rescue window.
+- LANDING: when you are near the planet, the ship lands on the surface. Dust rises from the pad, the planet
+  hangs in the sky, and the survivor waves with a pulsing beacon in the colour of their planet.
+- RESCUE: hostile craft dive at the survivor. Steer under them and fire with F. Each hostile craft that reaches
+  the survivor costs 34% of their health. Three hits and the survivor is lost. Destroy every hostile craft to win.
+- BOARDING: the survivor walks to the ship. TAKE OFF: the ship rises from the surface with flames and dust.
+- MISSION PASSED: $10,000 is added to your balance, and the balance is saved.
+- ALARM: a few seconds later a red alarm flashes, and the next signal appears with its planet and universe.
+  The next planet is marked on the 3D map (orange, pulsing, labelled TARGET).
+- FAILED: if the survivor is lost or the rescue window runs out, MISSION FAILED appears, and the same mission
+  starts again from where it was given.
+- During a mission, black holes wait until the target is reached, and a black hole jump goes to the target.
+- N during a mission takes the ship straight to the target, and begins the landing.
+
+BALANCE (28.7)
+- The BALANCE is shown in the FLIGHT SYSTEM panel and on the station. It is saved with the progress file.
+
+NOTES ON THE MISSIONS
+- Rescue window: about 1.35 times the time the trip takes at the chosen speed, plus 40 seconds.
+  At Slow, Venus is about ten minutes away; at Fast, about three and a half minutes.
+- The survivor's suit takes the colour of the planet's atmosphere (Venus yellow, Mars orange, Neptune blue, ...).
+- Hostile craft: the first missions have 6 craft, and the number grows to 14.
+
+WHAT IS NOT IN THIS VERSION
+- No sound. The signal and the alarm are shown with text, colours and flashing, because the project has no audio files.
+- The surfaces use the planet textures, fog, haze and dust. Full photo-realism needs a more capable
+  renderer than the Compatibility renderer this project uses, so the look is improved, not photographic.
+
+NO RINGS (28.6)
+- Removed the glowing rings: the gates on the road, the halo rings on pickups and hostile craft, the
+  black hole's ring (it is now a soft glow), the halo ring around Earth on the cover, and the black hole
+  ring on the universe map. Saturn keeps its own ring, since real ringed planets have one.
+- Pickups are plain glowing crystals, hostile craft are dark saucers with blinking lamps, and asteroids
+  have a smaller chunk beside them so they look irregular.
+
+QUICK ARRIVAL: N (28.6)
+- Press N to arrive at the nearest planet in one second. The obstacles on the way are cleared first.
+  The world keeps moving, so the planets and galaxies still change as you pass them.
+- Not available while paused, during a repair, during a black hole jump or after a crash.
+
+PILOT VIEW (28.6)
+- The cockpit now has an attitude screen (the galactic plane tilts with the bank and moves with the pitch),
+  a speed screen with a throttle bar that lights up when boosting, and a bearing tape for the next stop
+  with its name and distance.
+- A glass reflection slides slowly across the canopy.
+- The camera has a slow head sway, an engine rumble when boosting, and a stronger rumble in warp.
+
+ANIMATION (28.6)
+- The nebula drifts slowly across the sky, and the stars still twinkle.
+- Pickups and hostile craft pulse their light.
+- The ship has a fine buffet at high speed and pitches its nose down slightly when boosting.
+
+ASTROVAEL 28.12 - MILESTONE 1 OF THE MASTER PROMPT (procedural sound, five more named worlds, audit)
+
+THE GAME
+- The ship never stops. There is no finish line. The route runs through the solar system and
+  then into new galaxies, and it keeps going.
+- Route order: VENUS (nearest, 23.7 million mi at closest approach from Earth), MARS, JUPITER,
+  SATURN, URANUS, NEPTUNE. After Neptune the ship enters a warp segment into the next galaxy.
+  Every six stops is a new galaxy. Planets after Neptune are generated from a fixed seed, so the
+  route never runs out and is the same every time.
+- Distances are in miles. One route unit is 1,000 miles.
+- The distances from Venus on are stylised so a planet arrives every few minutes. Venus's distance
+  is real. The HUD shows the same numbers the ship travels.
+
+NEAREST PLANET BOX (right side)
+- Shows only the nearest planet: name, type, gravity, surface temperature, moons, galaxy.
+- TRAVELLED: total miles flown since leaving Earth.
+- TO ARRIVE: miles left to the nearest planet, with a progress bar for the current leg.
+- TAB shows the next five stops and their distances.
+
+ENVIRONMENT CHANGES
+- Approaching and passing each planet blends the fog, ambient light and atmosphere toward that
+  planet's colours. Venus is yellow haze, Mars is dusty butterscotch, Uranus and Neptune are cold blue.
+- Each galaxy has its own sky: band direction, nebula colour and star tints. The sky changes
+  smoothly on arrival in a new galaxy.
+- Warp segments use a wider field of view and a flash.
+
+3D COVER
+- Opens first. New tagline: "THE UNIVERSE NEVER ENDS", with "FLY ON. EVERY HORIZON IS A NEW WORLD".
+- Earth, the ship, the star sky and the menu are all built from the same shared modules as the flight.
+
+PLANET TEXTURES
+- New: Venus, Jupiter, Saturn, Uranus, Neptune (generated by tools/gen_planet_textures_v28.py).
+- Earth and Mars are unchanged.
+
+PROBLEMS IN THE 26.0 / 27.0 CODE AND HOW 28.0 HANDLES THEM
+(From reading the code. The game has not been run, so the effects below are what the code does
+on paper; please report anything different.)
+1. The flight stops on arrival at Mars (destination_reached holds the ship). The route now never stops.
+2. The route was fixed to Earth-to-Mars and Mars was the only destination. Venus is now the first stop,
+   and the route continues through the solar system and into new galaxies.
+3. The ship moved through world coordinates for the whole run, so single-precision positions grow less
+   accurate the further it flies. The ship and camera now stay near the origin, and objects are placed
+   each frame from their route position stored in double precision.
+4. Hazards, pickups and shots were detected with physics areas that were moved by hand each frame.
+   Fast-moving objects can pass through an area between physics steps. Hits are now distance tests with a
+   sweep allowance equal to the distance moved in one frame.
+5. The track was recycled from a fixed set of five segments. Track tiles are now generated ahead of the
+   ship and removed behind it, so the route has no fixed length.
+6. Save data kept best distance in a unit that did not match the HUD. The save is now version 3 and
+   stores best_miles. Older best values are not carried over; money and energy are kept.
+
+EYE COMFORT (28.3)
+- The game is dimmer and warmer. Cyan and bright blue glow were the main cause of eye strain, so:
+  - the HUD uses soft amber and cream on dark brown glass, not bright cyan
+  - the glow (bloom) and contrast are lower, and the overall brightness is a little lower
+  - stars, nebula and the galactic band are fainter and warmer
+  - rails, markers, gates, pickups, the ship's engines and the shots use warm or muted colours
+  - the warp flash and the speed streaks are warm and softer
+  - the black hole's outer ring is a muted violet instead of a bright one
+
+CRASH MENU (28.3)
+When the ship is destroyed, a menu appears with four choices:
+- RESTART (from Earth): begins a new flight from the start, as before.
+- REPAIR TO PLAY (from this place): a 3-2-1 countdown, then 5 seconds of repair (sparks and a
+  rotating ring around the ship, and the ship flickers while it is being repaired). The flight then
+  continues from the same place, with the same energy and diamonds. The obstacles right in front of the
+  ship are cleared, so the ship does not crash into the same thing straight away.
+- SAVE GAME: choose slot 1, 2 or 3 (each shows its saved distance and time, or EMPTY).
+- MAIN MENU.
+
+PAUSE MENU (28.3)
+- ESC or the pause button opens a menu: RESUME, SAVE GAME, MAIN MENU.
+
+SAVE SLOTS AND LOAD GAME (28.3)
+- Save a game from the pause menu or the crash menu, into one of three slots.
+- On the main menu, LOAD GAME lists the three slots. Choosing one continues the flight from the exact
+  saved place: the same distance travelled, the same nearest planet, the same energy and speed setting.
+- A save records where the ship is. Asteroids, hostile craft and pickups are not saved; they are
+  placed again as the flight continues, and the space directly ahead of the ship is cleared on load.
+- Saving is not available during a black hole jump or a repair (the game shows a short message).
+
+UNITS (28.2)
+- Distances now show in million km (1 route unit = 1,000 miles = 1,609.344 km). Example: Venus is
+  38.14 million km away at the start, which matches its real closest approach from Earth.
+- Speeds show in km/s instead of mi/s.
+- Best distance on the cover and HUD is also shown in million km.
+
+BLACK HOLES (28.2)
+- Every 50 million km of travel, a black hole appears ahead (a dark core with an orange and violet ring).
+- The ship flies into it. The jump takes exactly 2 minutes of real time, at any speed setting.
+- It carries the ship to the next destination that is at least 29 million km ahead. Planets in between
+  are skipped inside the jump. (The first jump goes past Mars to Jupiter.)
+- During the jump there are no stars, planets, asteroids or ships: only long streaks and a countdown.
+- When the jump ends, the ship returns to the speed you chose (Slow, Medium or Fast).
+- The next black hole appears 50 million km after the last jump.
+
+3D FOLDING PANELS (28.5)
+- The arrow on each panel's header folds it to a short view, and opens it again.
+- FLIGHT SYSTEM folded: speed, energy and diamonds side by side, travelled, personal best, and the
+  3D map (zoom and turn still work). Opened: boost bar, the map title and readout, and the whole-route button.
+- NEAREST PLANET folded: planet name, TO ARRIVE and speed side by side. Opened: type, facts, travelled,
+  the progress bar and the speed setting.
+- The panels fade in and out when they open or fold.
+
+PILOT VIEW (28.5)
+- Key 2 switches to the pilot view: the camera sits just above the canopy and looks down the nose,
+  with a dashboard frame, glowing instruments and a centre reticle. Key 2 again returns to the chase view.
+- Keys 1, 2 and 3 used to set the speed. Key 2 is now the pilot view, so the speed is set with the
+  SLOW / MEDIUM / FAST buttons in the nearest-planet panel.
+
+CALMER FLIGHT (28.5)
+- The first 20 seconds have no asteroids. The first 35 seconds have no hostile craft.
+- Asteroids come about every 4.5 seconds, and not every time. Hostile craft come about every 14 seconds.
+- The middle of the road is mostly clear: most obstacles come from the sides.
+- Diamonds appear a little more often.
+
+ANIMATION (28.5)
+- Stars twinkle.
+- Hostile craft bob up and down.
+- The panels and the pilot frame fade in and out.
+
+UNIVERSE MAP (28.4)
+- The left panel has a 3D map of the whole route: each galaxy is a separate cluster, and its stops sit on a ring.
+  Drag the map to turn it, use the mouse wheel to zoom.
+- The ship is a 3D arrow showing its heading. A coloured X/Y/Z compass sits on the ship. A line joins
+  the ship to the next stop.
+- The readout under the map gives the heading as X/Y/Z, its azimuth and elevation in degrees, and the
+  direction to the next stop.
+- SHOW WHOLE ROUTE / FOLLOW THE SHIP switches the map between the whole route and following the ship.
+- During an approaching black hole, the map shows it.
+
+GRAPHICS (28.4)
+- Planets have orbiting moons (up to three shown per planet).
+- Dust motes drift past the ship for depth.
+- The camera rolls into turns and widens its view during boost.
+
+BLACK HOLE (28.4)
+- The jump takes 1 minute instead of 2. The countdown and messages say so.
+
+SPEED OPTIONS (28.1)
+- The right-side box has a speed line at the bottom: "SPEED · SLOW (click to change)".
+  Click it to show SLOW / MEDIUM / FAST. Choosing one hides them again.
+- Keys 1, 2 and 3 also select Slow, Medium and Fast.
+- Speed scales the whole universe: travel, asteroids, hostile craft, pickups and the warp.
+  Slow = 45% of the full speed, Medium = 70%, Fast = 100% (the speed of 28.0).
+- Steering, boost, firing and the HUD stay at real-time response, so the ship still turns quickly.
+- The HUD speed line shows the speed you are actually flying.
+- Your choice is saved. The game starts on SLOW.
+
+KEYS
+A / D or arrows: steer     SPACE: boost     F: fire     TAB: route ahead
+ESC: pause     R: redeploy after a crash     M: back to the cover (paused or after a crash)
+
+REMOVED OR CHANGED FROM 26.0
+- The departure swing from Earth at the start is not in this version.
+- The NAV MAP panel is replaced by the nearest-planet box and the TAB route list.
+- Ship purchases and the map select routes are still placeholders on the cover.
+
+TEST STATUS - PLEASE READ
+- Static checks only: indentation, bracket balance, that every helper is defined, and that every
+  res:// path exists. Godot 4.7 was NOT available where this was prepared, so the project has NOT
+  been compiled or run in the editor. Please send the first red error line from Godot if one appears.
+- Most likely to need adjustment once running: the galaxy sky shader, the fog values for each planet,
+  the streak particles, and the camera distance to the planets.
+
+NEXT (not in this version)
+- Ship purchases and a working map select.
+- Sound.
+- Visual polish on the planets and warp effects, after you have tried the game.

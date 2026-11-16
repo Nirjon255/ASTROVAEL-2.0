@@ -1,0 +1,20 @@
+ASTROVAEL 22.0 — ALIEN ENCOUNTER & SPACE COMBAT
+
+NEW FEATURES
+- Hold F on PC or hold the FIRE button on mobile to shoot twin energy bolts.
+- Hostile alien spacecraft approach from ahead, travelling toward the player.
+- Procedural alien fighter design with green energy cockpit and engine details.
+- Projectile hits destroy hostile ships and trigger a short green energy burst.
+- Each destroyed hostile awards 2 energy and increments the HOSTILES counter.
+- Colliding with a hostile craft terminates the run.
+- Enemy and projectile cleanup prevents objects accumulating indefinitely.
+- Existing steering, boost, navigation map, journey display, hazards, pickups and save data are retained.
+
+CONTROLS
+PC: A/D or arrow keys to steer, SPACE to boost, F to fire, ESC to pause.
+Mobile: left/right, BOOST and FIRE touch buttons. Hold FIRE for continuous shooting.
+
+TECHNICAL NOTE
+This project targets Godot 4.7 Compatibility renderer. The source and ZIP archive can be checked here,
+but this environment does not have the Godot editor/runtime available, so engine compilation and gameplay
+verification must be completed in the user's Godot installation.

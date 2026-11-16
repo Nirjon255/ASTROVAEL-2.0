@@ -1,0 +1,22 @@
+ASTROVAEL 10.0 — ENVIRONMENT & FLIGHT HUD UPGRADE
+Godot 4.7 | Compatibility renderer | PC + mobile-oriented controls
+
+BASED ON
+ASTROVAEL 6.5 fixed project and the ASTROVAEL Game Design & Development Plan.
+
+WHAT CHANGED
+- Added orbital relay stations along the route, with layered armored modules,
+  cyan navigation strips, amber warning lights, antenna masts and sensor dishes.
+- Added irregular low-poly asteroid fragments to the distant route margins.
+- Kept the route corridor readable and clear for hazards and pickups.
+- Moved the flight speed meter to the LEFT side below the main stats and boost UI.
+- Redesigned the meter with a large digital speed number, cruise/afterburner state,
+  and a compact animated speed bar.
+- Preserved the current ship, planets, nebula, controls, boost, hazards, pickups,
+  scoring, save data, and Compatibility renderer.
+
+IMPORTANT
+This project was source-inspected and the ZIP archive was checked for integrity.
+Godot 4.7 is not installed in this environment, so the project has NOT been run
+or compiled in the Godot editor here. Open it in Godot and send the first error
+screenshot if the editor reports one.

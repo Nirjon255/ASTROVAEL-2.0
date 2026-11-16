@@ -1,0 +1,50 @@
+ASTROVAEL 27.0 - 3D COVER
+
+Based on the Version 26.0 project. Flight, route, combat, pickups, diamonds, the NAV MAP
+and the mission clock are unchanged except for the two small edits listed below.
+
+NEW: 3D COVER (scenes/Cover.tscn, scripts/cover_menu.gd)
+- This is now the startup scene.
+- 3D backdrop: Earth with clouds, a blue atmosphere and a glowing halo ring, slowly
+  turning on a tilted axis; a grey moon in the upper background; a ship with twin
+  glowing engines hovering and drifting; a star sky with the Milky Way and sun glare
+  (same shader as the flight game); faint dust specks drifting toward the camera.
+- The camera drifts slowly and follows the mouse a little, so the scene reads as 3D.
+- 2D overlay in the layout of the reference cover: glowing ring emblem with the title
+  on the left, menu buttons on the right, round icons top-right and bottom-left.
+- Title text is the constant GAME_TITLE at the top of cover_menu.gd. The reference image
+  says "SCI-FI GAME NAME", so this build uses ASTROVAEL. Change the constant to rename it.
+
+MENU
+- START GAME: begins the flight in scenes/Main.tscn.
+- MAP SELECT (also the bookmark icon): shows the active Earth to Mars route and the
+  planned routes. Only Earth to Mars can be flown in this build.
+- SETTINGS (also the gear icon): lists the controls. Audio and display options are not
+  in this build.
+- ABOUT US (also the info icon): describes the game.
+- PILOT PROFILE (profile icon, top right): shows your saved personal best, total energy
+  and diamonds from the save file.
+- SHIP CATALOG (ship icon, bottom left): lists the four ships and their prices. Buying
+  ships is not yet available.
+- QUIT GAME: closes the game.
+- ESC closes an open panel.
+
+CHANGES TO main.gd (small)
+- Pressing M while paused or after a run ends returns to the cover.
+- The pause and end-of-run messages mention M FOR MAIN MENU.
+
+TEST STATUS - PLEASE READ
+- Static checks only: indentation, bracket balance, and that every helper the new
+  script calls is defined. Godot 4.7 is NOT installed in the environment where this was
+  prepared, so the project has NOT been compiled or run in the editor.
+- Most likely places for an editor error, if one appears: Basis.looking_at (sun
+  direction, same call as the flight game), CPUParticles3D property names in
+  _build_dust, and the StyleBoxFlat content-margin helpers in _box.
+- Send the first Godot error line if one appears.
+
+NEXT (planned, not in this version)
+- Right-side journey box in flight showing km travelled and km remaining to the nearest
+  planet.
+- A different environment at each planet along the route.
+- Endless travel: after one galaxy, continue into the next.
+- Further 3D realism upgrades to the flight scene.

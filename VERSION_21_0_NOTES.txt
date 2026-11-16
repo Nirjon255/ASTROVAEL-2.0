@@ -1,0 +1,27 @@
+ASTROVAEL 21.0 - INTERPLANETARY JOURNEY HUD
+
+Based on the ASTROVAEL 20.0 project.
+
+New in 21.0:
+- Live Earth-to-Venus route panel.
+- Kilometres travelled and kilometres remaining.
+- Dynamic journey completion percentage and progress bar.
+- Estimated arrival countdown that responds to cruise/afterburner speed.
+- Arrival state when the route's reference distance is completed.
+- Uses an explicit arcade compression scale: 1 internal flight-distance unit = 100,000 simulated km.
+- Uses 38.2 million km as an approximate Earth-Venus closest-approach reference, not a current real-time ephemeris.
+
+Important:
+This is a playable arcade-scale navigation display, not a physically accurate spacecraft simulator.
+The route distance is a reference value; actual Earth/planet separation changes with orbital positions.
+The HUD's ETA is based on the game's compressed travel scale and current in-game cruise/boost rate.
+
+Preserved from 20.0:
+- Godot 4 project structure and Compatibility renderer.
+- Existing ship, camera, procedural environment, hazards, pickups, energy and boost systems.
+- Navigation map, sector identity and save data.
+
+Testing:
+The ZIP archive can be integrity-checked, but Godot is not installed in this environment, so the project
+has not been launched or compiled in the Godot editor here. Please import project.godot in Godot 4.7
+and test the route HUD before replacing your 20.0 backup.

@@ -1,0 +1,23 @@
+ASTROVAEL 25.0 — NAVIGATION, WORLD-ANCHORED MARS & DIAMOND WALLET
+
+CHANGES
+- Fixed destination identity mismatch: the active route, destination planet and navigation map now agree on Earth → Mars.
+- Mars is a top-level world-anchored Node3D at a fixed world coordinate. It is explicitly re-anchored each frame and is never parented to the ship or camera.
+- Route distance is calculated from the ship's actual world-space displacement from its starting position. Travelled and remaining values use the same 54.6 million km closest-approach route scale.
+- The compact route panel is hidden during normal flight and appears only while NAV MAP is open.
+- Route panel reduced to 320 x 100 logical pixels.
+- Added persistent diamond wallet. Each crystal pickup grants +1 diamond; destroying an alien craft grants +10 diamonds.
+- Diamond balance saves immediately on pickup and hostile destruction. SaveData v2 reads old v1 saves and safely initializes the new wallet to zero.
+- Added a starter ship catalog and proposed future shop prices: ASTRA-01 free, VANGUARD X 350, PHANTOM 9 900, TITAN VAEL 1800 diamonds. These are catalog/planning values; a purchase/hangar interface is a later milestone.
+- Slightly reduced speed meter footprint and repositioned lower HUD elements to avoid overlap with the new wallet line.
+
+TEST STATUS
+- ZIP integrity and static source checks only. Godot 4.7 is not installed in this environment, so engine parsing and runtime behavior have not been verified here.
+
+CONTROLS
+- A / Left Arrow: steer left
+- D / Right Arrow: steer right
+- Space: boost
+- F / FIRE: shoot
+- NAV MAP: opens map and route distance panel
+- Escape: pause / resume

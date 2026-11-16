@@ -1,0 +1,37 @@
+ASTROVAEL 20.0 — NAVIGATION & BOOST SYSTEM UPGRADE
+Godot 4.7 | Compatibility renderer | PC-first, mobile-aware
+
+BASED ON THE SAVED ASTROVAEL 10.0 PROJECT AND MASTER PLAN.
+
+MAJOR CHANGES
+1. BOOST SAFETY REWORK
+   - Mobile boost now has explicit press/release handling.
+   - Pointer exit and focus loss release boost to prevent a stuck boost.
+   - Pause and game-over forcibly clear boost.
+   - Energy is clamped and boost cannot remain active with an empty tank.
+   - Engine particle intensity changes more smoothly to reduce sudden visual spikes.
+
+2. VAEL GRID NAVIGATION MAP
+   - New NAV MAP button opens an in-game solar-system navigation overlay.
+   - Schematic orbit diagram for Mercury, Venus, Earth, Mars and Jupiter.
+   - Earth-to-Mars closest, average and farthest distance estimates.
+   - Earth-to-Venus and Earth-to-Jupiter closest-approach reference distances.
+   - Explicitly labelled approximate and schematic; this is a navigation reference,
+     not a live ephemeris or real-time simulation.
+
+3. SECTOR IDENTITY
+   - Displays the five planned sector names from the master plan:
+     Orbital Fringe, Shattered Belt, Neon Nebula, Silent Shipyard and VAEL Core.
+   - Sector label updates as run distance increases.
+
+4. PRESERVED
+   - Existing ship, hazards, pickups, save data, core runner loop, visuals,
+     controls and Compatibility renderer.
+
+IMPORTANT LIMITATION
+The master plan defines ASTROVAEL as a focused arcade endless runner, not an
+open-world solar-system simulator. The map is therefore a HUD navigation feature.
+This package was source-inspected and ZIP integrity checked. Godot 4.7 is not
+installed in this environment, so it has NOT been run or compiled in Godot.
+Please test it in your Godot editor and share the first error or boost behaviour
+if anything is still wrong.
